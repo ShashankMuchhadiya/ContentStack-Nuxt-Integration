@@ -22,10 +22,18 @@ export default defineNuxtConfig({
 			},
 		],
 		"@nuxt/image",
+		"@nuxtjs/sitemap",
+		"@nuxtjs/robots",
 		Sonda({
 			server: true,
 		}),
 	],
+	site: {
+		url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
+		name: "ContentStack Integration",
+		description: "Modern Nuxt.js application integrated with ContentStack CMS",
+		defaultLocale: "en",
+	},
 	app: {
 		head: {
 			link: [
@@ -45,6 +53,7 @@ export default defineNuxtConfig({
 		// Certain API endpoints can be set via environment variables for internal testing at Contentstack
 		// You can omit in your project. Use @timbenniks/contentstack-endpoints to get the right urls for your region.
 		public: {
+			siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
 			// Legacy config for old plugin
 			apiKey: process.env.NUXT_CONTENTSTACK_API_KEY,
 			deliveryToken: process.env.NUXT_CONTENTSTACK_DELIVERY_TOKEN,
@@ -52,9 +61,14 @@ export default defineNuxtConfig({
 			environment: process.env.NUXT_CONTENTSTACK_ENVIRONMENT,
 			preview: process.env.NUXT_CONTENTSTACK_PREVIEW === "true",
 			region: region ? region : (process.env.NUXT_CONTENTSTACK_REGION as any),
-			contentDelivery: process.env.NUXT_CONTENTSTACK_CONTENT_DELIVERY || (endpoints && endpoints.contentDelivery),
-			previewHost: process.env.NUXT_CONTENTSTACK_PREVIEW_HOST || (endpoints && endpoints.preview),
-			applicationHost: process.env.NUXT_CONTENTSTACK_CONTENT_APPLICATION || (endpoints && endpoints.application),
+			contentDelivery:
+				process.env.NUXT_CONTENTSTACK_CONTENT_DELIVERY ||
+				(endpoints && endpoints.contentDelivery),
+			previewHost:
+				process.env.NUXT_CONTENTSTACK_PREVIEW_HOST || (endpoints && endpoints.preview),
+			applicationHost:
+				process.env.NUXT_CONTENTSTACK_CONTENT_APPLICATION ||
+				(endpoints && endpoints.application),
 			// New config for custom utilities
 			contentstack: {
 				APIKEY: process.env.NUXT_CONTENTSTACK_API_KEY,
