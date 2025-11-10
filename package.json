@@ -1,30 +1,32 @@
 {
-  "name": "nuxt-contentstack-integration",
-  "version": "1.0.4",
-  "private": false,
-  "description": "Contentstack Kickstarts are the minimum amount of code needed to connect to Contentstack.",
-  "author": "Shashank Muchhadiya",
-  "homepage": "https://contentstack.com",
-  "license": "MIT",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@contentstack/delivery-sdk": "^4.10.0",
-    "@contentstack/live-preview-utils": "^4.0.2",
-    "@nuxt/fonts": "^0.12.1",
-    "@nuxt/image": "^2.0.0",
-    "@nuxtjs/tailwindcss": "^6.14.0",
-    "@timbenniks/contentstack-endpoints": "^1.0.16",
-    "nuxt": "^4.1.2",
-    "vue": "^3.5.22",
-    "vue-router": "^4.5.1"
-  },
-  "devDependencies": {
-    "@types/node": "^24.10.0"
-  }
+	"name": "nuxt-contentstack-integration",
+	"version": "1.0.4",
+	"private": false,
+	"description": "Contentstack Kickstarts are the minimum amount of code needed to connect to Contentstack.",
+	"author": "Shashank Muchhadiya",
+	"homepage": "https://contentstack.com",
+	"license": "MIT",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@contentstack/delivery-sdk": "^4.10.0",
+		"@contentstack/live-preview-utils": "^4.0.2",
+		"@nuxt/fonts": "^0.12.1",
+		"@nuxt/image": "^2.0.0",
+		"@nuxtjs/tailwindcss": "^6.14.0",
+		"@timbenniks/contentstack-endpoints": "^1.0.16",
+		"nuxt": "^4.1.2",
+		"vue": "^3.5.22",
+		"vue-router": "^4.5.1"
+	},
+	"devDependencies": {
+		"@types/node": "^24.10.0",
+		"prettier": "^3.6.2",
+		"sonda": "^0.9.0"
+	}
 }

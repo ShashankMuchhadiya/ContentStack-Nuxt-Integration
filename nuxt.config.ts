@@ -1,6 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-
 import { getContentstackEndpoints, getRegionForString } from "@timbenniks/contentstack-endpoints";
+import Sonda from "sonda/nuxt";
 const region = getRegionForString(process.env.NUXT_CONTENTSTACK_REGION as string);
 const endpoints = getContentstackEndpoints(region, true);
 
@@ -23,6 +22,9 @@ export default defineNuxtConfig({
 			},
 		],
 		"@nuxt/image",
+		Sonda({
+			server: true,
+		}),
 	],
 	app: {
 		head: {
