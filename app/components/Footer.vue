@@ -2,13 +2,12 @@
 import VB_EmptyBlockParentClass from "@contentstack/live-preview-utils";
 
 // Fetch footer data from Contentstack
-const { data: footerData } = await useContentStack({
+const { data: footerData, pending: footerPending } = await useContentStack({
 	content_type_uid: "menu",
 	language: "en-us",
 	trigger404: false,
+	key: "footer-menu",
 });
-
-const footer = footerData?.value;
 
 // Helper function to get link URL
 const getLinkUrl = (link: any) => {
@@ -62,15 +61,36 @@ const renderRichText = (richText: any) => {
 </script>
 
 <template>
-	<footer v-if="footer" class="bg-gray-900 text-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+	<footer class="bg-gray-950 border-t border-gray-800/50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+			<!-- Loading State -->
+			<div v-if="footerPending" class="flex items-center justify-center py-12">
+				<svg
+					class="animate-spin h-6 w-6 text-gray-400"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24">
+					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+					<path
+						class="opacity-75"
+						fill="currentColor"
+						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+				</svg>
+			</div>
+
+			<!-- Footer Content -->
+			<div
+				v-else-if="footerData?.sections && footerData.sections.length > 0"
+				class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12">
 				<!-- Footer Sections -->
 				<div
-					v-for="(section, sectionIndex) in footer.sections"
+					v-for="(section, sectionIndex) in footerData.sections"
 					:key="`footer-section-${sectionIndex}`"
 					class="col-span-1">
-					<h3 v-if="section.title" class="text-lg font-semibold mb-4" v-bind="section.$ && section.$.title">
+					<h3
+						v-if="section.title"
+						class="text-sm font-semibold text-white mb-4 tracking-tight"
+						v-bind="section.$ && section.$.title">
 						{{ section.title }}
 					</h3>
 
@@ -83,12 +103,12 @@ const renderRichText = (richText: any) => {
 					</NuxtLink>
 
 					<!-- Section Links -->
-					<ul v-if="section.links" class="space-y-2">
+					<ul v-if="section.links" class="space-y-2.5">
 						<li v-for="(link, linkIndex) in section.links" :key="`link-${linkIndex}`">
 							<a
 								:href="link.external_link || getLinkUrl(link.link)"
 								:target="link.external_link ? '_blank' : '_self'"
-								class="text-gray-400 hover:text-white text-sm transition-colors"
+								class="text-sm text-gray-400 hover:text-white transition-colors duration-200 inline-block"
 								v-bind="link.$ && link.$.text">
 								{{ link.text }}
 							</a>
@@ -99,17 +119,17 @@ const renderRichText = (richText: any) => {
 
 			<!-- Built By Section -->
 			<div
-				v-if="footer.built_by"
-				class="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400"
-				v-bind="footer.$ && footer.$.built_by"
-				v-html="renderRichText(footer.built_by)" />
+				v-if="!footerPending && footerData?.built_by"
+				class="mt-12 pt-8 border-t border-gray-800/50 text-center text-xs text-gray-500"
+				v-bind="footerData.$ && footerData.$.built_by"
+				v-html="renderRichText(footerData.built_by)" />
 
 			<!-- Copyright Info -->
 			<div
-				v-if="footer.copyright_info"
-				class="mt-4 text-center text-sm text-gray-400"
-				v-bind="footer.$ && footer.$.copyright_info"
-				v-html="renderRichText(footer.copyright_info)" />
+				v-if="!footerPending && footerData?.copyright_info"
+				class="mt-4 text-center text-xs text-gray-500"
+				v-bind="footerData.$ && footerData.$.copyright_info"
+				v-html="renderRichText(footerData.copyright_info)" />
 		</div>
 	</footer>
 </template>

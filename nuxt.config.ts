@@ -7,7 +7,38 @@ const endpoints = getContentstackEndpoints(region, true);
 export default defineNuxtConfig({
 	compatibilityDate: "2024-04-03",
 	devtools: { enabled: true },
-	modules: ["@nuxtjs/tailwindcss"],
+	ssr: true,
+	modules: [
+		"@nuxtjs/tailwindcss",
+		[
+			"@nuxt/fonts",
+			{
+				families: [
+					{
+						name: "Poppins",
+						provider: "google",
+						weights: [300, 400, 500, 600, 700],
+					},
+				],
+			},
+		],
+		"@nuxt/image",
+	],
+	app: {
+		head: {
+			link: [
+				{
+					rel: "preconnect",
+					href: "https://fonts.googleapis.com",
+				},
+				{
+					rel: "preconnect",
+					href: "https://fonts.gstatic.com",
+					crossorigin: "",
+				},
+			],
+		},
+	},
 	runtimeConfig: {
 		// Certain API endpoints can be set via environment variables for internal testing at Contentstack
 		// You can omit in your project. Use @timbenniks/contentstack-endpoints to get the right urls for your region.
