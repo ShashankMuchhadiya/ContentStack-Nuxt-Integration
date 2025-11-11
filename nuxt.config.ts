@@ -78,8 +78,6 @@ export default defineNuxtConfig({
 		[
 			"@nuxtjs/storybook",
 			{
-				// Disable proxy to Nuxt dev server to prevent connection errors
-				// when running Storybook standalone
 				proxy: false,
 			},
 		],

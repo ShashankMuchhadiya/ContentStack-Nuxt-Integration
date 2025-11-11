@@ -12,13 +12,14 @@ const currentLocale = computed(() => {
 const switchLanguage = async (localeCode: string) => {
 	const route = useRoute();
 	const router = useRouter();
-	
+
 	// Set the locale
-	await setLocale(localeCode);
-	
+	await setLocale(localeCode as "en" | "es" | "fr" | "de");
+
 	// Navigate to the new locale route
 	// For default locale (en), use root path, otherwise use locale prefix
 	let newPath: string;
+
 	
 	// Get the current path without locale prefix
 	const currentPath = route.path.replace(/^\/(es|fr|de)/, "") || "/";
