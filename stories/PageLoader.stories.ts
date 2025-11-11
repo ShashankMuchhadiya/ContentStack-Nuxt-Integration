@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import PageLoader from "./PageLoader.vue";
+import PageLoader from "../app/components/PageLoader.vue";
 
 const meta: Meta<typeof PageLoader> = {
 	title: "Components/PageLoader",

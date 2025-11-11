@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import ContactUsPage from "./contact-us.vue";
+import AboutUsPage from "../app/pages/about-us.vue";
 
-const meta: Meta<typeof ContactUsPage> = {
-	title: "Pages/Contact Us",
-	component: ContactUsPage,
+const meta: Meta<typeof AboutUsPage> = {
+	title: "Pages/About Us",
+	component: AboutUsPage,
 	tags: ["autodocs"],
 	parameters: {
 		layout: "fullscreen",
@@ -11,7 +11,7 @@ const meta: Meta<typeof ContactUsPage> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ContactUsPage>;
+type Story = StoryObj<typeof AboutUsPage>;
 
 export const Default: Story = {
 	decorators: [

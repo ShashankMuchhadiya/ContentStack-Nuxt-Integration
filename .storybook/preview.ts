@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/vue3";
 
 const preview: Preview = {
-	parameters: {
+    parameters: {
 		actions: { argTypesRegex: "^on[A-Z].*" },
 		controls: {
 			matchers: {
@@ -10,26 +10,27 @@ const preview: Preview = {
 			},
 		},
 		backgrounds: {
-			default: "dark",
-			values: [
-				{
+            options: {
+                dark: {
 					name: "dark",
 					value: "#111827",
 				},
-				{
+
+                light: {
 					name: "light",
 					value: "#ffffff",
-				},
-			],
-		},
+				}
+            }
+        },
 		docs: {
-			autodocs: true,
+			autodocs: "tag",
 			source: {
 				type: "code",
 			},
 		},
 	},
-	decorators: [
+
+    decorators: [
 		(story) => ({
 			components: { story },
 			template: `
@@ -39,6 +40,12 @@ const preview: Preview = {
 			`,
 		}),
 	],
+
+    initialGlobals: {
+        backgrounds: {
+            value: "dark"
+        }
+    }
 };
 
 export default preview;

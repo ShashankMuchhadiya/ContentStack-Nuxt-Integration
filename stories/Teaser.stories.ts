@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import Teaser from "./Teaser.vue";
+import Teaser from "../app/components/Teaser.vue";
 
 const meta: Meta<typeof Teaser> = {
 	title: "Components/Teaser",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import CardCollection from "./CardCollection.vue";
+import CardCollection from "../app/components/CardCollection.vue";
 
 const meta: Meta<typeof CardCollection> = {
 	title: "Components/CardCollection",

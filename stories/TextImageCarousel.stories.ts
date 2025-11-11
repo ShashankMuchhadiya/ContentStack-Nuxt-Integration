@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import TextImageCarousel from "./TextImageCarousel.vue";
+import TextImageCarousel from "../app/components/TextImageCarousel.vue";
 
 const meta: Meta<typeof TextImageCarousel> = {
 	title: "Components/TextImageCarousel",

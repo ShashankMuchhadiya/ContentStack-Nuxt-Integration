@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import EmptyState from "./EmptyState.vue";
+import EmptyState from "../app/components/EmptyState.vue";
 
 const meta: Meta<typeof EmptyState> = {
 	title: "Components/EmptyState",

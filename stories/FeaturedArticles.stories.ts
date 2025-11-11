@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import FeaturedArticles from "./FeaturedArticles.vue";
+import FeaturedArticles from "../app/components/FeaturedArticles.vue";
 
 const meta: Meta<typeof FeaturedArticles> = {
 	title: "Components/FeaturedArticles",

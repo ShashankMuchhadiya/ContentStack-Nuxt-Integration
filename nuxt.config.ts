@@ -75,7 +75,14 @@ export default defineNuxtConfig({
 		Sonda({
 			server: true,
 		}),
-		"@nuxtjs/storybook",
+		[
+			"@nuxtjs/storybook",
+			{
+				// Disable proxy to Nuxt dev server to prevent connection errors
+				// when running Storybook standalone
+				proxy: false,
+			},
+		],
 	],
 	site: {
 		url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",

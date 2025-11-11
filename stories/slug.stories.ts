@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import IndexPage from "./index.vue";
+import SlugPage from "../app/pages/[...slug].vue";
 
-const meta: Meta<typeof IndexPage> = {
-	title: "Pages/Home",
-	component: IndexPage,
+const meta: Meta<typeof SlugPage> = {
+	title: "Pages/Dynamic Slug",
+	component: SlugPage,
 	tags: ["autodocs"],
 	parameters: {
 		layout: "fullscreen",
@@ -11,7 +11,7 @@ const meta: Meta<typeof IndexPage> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof IndexPage>;
+type Story = StoryObj<typeof SlugPage>;
 
 export const Default: Story = {
 	decorators: [

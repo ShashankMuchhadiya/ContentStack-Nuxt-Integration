@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import LanguageSwitcher from "./LanguageSwitcher.vue";
+import LanguageSwitcher from "../app/components/LanguageSwitcher.vue";
 
 const meta: Meta<typeof LanguageSwitcher> = {
 	title: "Components/LanguageSwitcher",
