@@ -8,7 +8,8 @@ const meta: Meta<typeof TextImageCarousel> = {
 	parameters: {
 		docs: {
 			description: {
-				component: "A carousel component that displays multiple items with text and images, supporting different image positions from ContentStack.",
+				component:
+					"A carousel component that displays multiple items with text and images, supporting different image positions from ContentStack.",
 			},
 		},
 	},
@@ -32,9 +33,10 @@ export const Default: Story = {
 			carousel_items: [
 				{
 					heading: "Feature One",
-					content: "<p>This is the first feature description. It explains the key benefits and capabilities.</p>",
+					content:
+						"<p>This is the first feature description. It explains the key benefits and capabilities.</p>",
 					image: {
-						url: "https://via.placeholder.com/600x600",
+						url: "https://placehold.co/600x600",
 						title: "Feature One Image",
 					},
 					image_alt_text: "Feature one showcase",
@@ -52,9 +54,10 @@ export const Default: Story = {
 				},
 				{
 					heading: "Feature Two",
-					content: "<p>This is the second feature description. It highlights another important aspect.</p>",
+					content:
+						"<p>This is the second feature description. It highlights another important aspect.</p>",
 					image: {
-						url: "https://via.placeholder.com/600x600",
+						url: "https://placehold.co/600x600",
 						title: "Feature Two Image",
 					},
 					image_alt_text: "Feature two showcase",
@@ -84,9 +87,10 @@ export const ImageRight: Story = {
 			carousel_items: [
 				{
 					heading: "Right Aligned Image",
-					content: "<p>This carousel item has the image on the right side for visual variety.</p>",
+					content:
+						"<p>This carousel item has the image on the right side for visual variety.</p>",
 					image: {
-						url: "https://via.placeholder.com/600x600",
+						url: "https://placehold.co/600x600",
 						title: "Right Image",
 					},
 					image_alt_text: "Right aligned image",
@@ -106,4 +110,3 @@ export const ImageRight: Story = {
 		},
 	},
 };
-

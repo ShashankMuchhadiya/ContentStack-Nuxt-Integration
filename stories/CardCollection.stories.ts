@@ -8,7 +8,8 @@ const meta: Meta<typeof CardCollection> = {
 	parameters: {
 		docs: {
 			description: {
-				component: "A card collection component that displays a grid of cards with images, titles, and CTAs from ContentStack.",
+				component:
+					"A card collection component that displays a grid of cards with images, titles, and CTAs from ContentStack.",
 			},
 		},
 	},
@@ -34,7 +35,7 @@ export const Default: Story = {
 				{
 					title: "Product 1",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Product 1",
 					},
 					image_alt_text: "Product 1 image",
@@ -51,7 +52,7 @@ export const Default: Story = {
 				{
 					title: "Product 2",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Product 2",
 					},
 					image_alt_text: "Product 2 image",
@@ -68,7 +69,7 @@ export const Default: Story = {
 				{
 					title: "Product 3",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Product 3",
 					},
 					image_alt_text: "Product 3 image",
@@ -85,7 +86,7 @@ export const Default: Story = {
 				{
 					title: "Product 4",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Product 4",
 					},
 					image_alt_text: "Product 4 image",
@@ -111,7 +112,7 @@ export const WithoutHeader: Story = {
 				{
 					title: "Card 1",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Card 1",
 					},
 					cta: {
@@ -127,7 +128,7 @@ export const WithoutHeader: Story = {
 				{
 					title: "Card 2",
 					image: {
-						url: "https://via.placeholder.com/400x300",
+						url: "https://placehold.co/400x300",
 						title: "Card 2",
 					},
 					cta: {
@@ -144,4 +145,3 @@ export const WithoutHeader: Story = {
 		},
 	},
 };
-
