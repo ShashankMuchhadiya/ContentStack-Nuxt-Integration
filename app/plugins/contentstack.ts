@@ -55,6 +55,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       stackDetails: {
         apiKey: apiKey,
         environment: environment,
+        locale: "fr-fr",
       },
       clientUrlParams: {
         host: applicationHost

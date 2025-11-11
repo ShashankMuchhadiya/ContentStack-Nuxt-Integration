@@ -1,3 +1,5 @@
+import type { ContentStackQueryOptions } from "@/types/contentstack";
+
 /**
  * Generate a unique cache key to be passed to the useAsyncData composable
  * for API requests to ContentStack.

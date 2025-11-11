@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	ssr: true,
 	modules: [
+		"@pinia/nuxt",
 		"@nuxtjs/tailwindcss",
 		[
 			"@nuxt/fonts",
@@ -24,15 +25,63 @@ export default defineNuxtConfig({
 		"@nuxt/image",
 		"@nuxtjs/sitemap",
 		"@nuxtjs/robots",
+		[
+			"@nuxtjs/i18n",
+			{
+				locales: [
+					{
+						code: "en",
+						iso: "en-US",
+						name: "English",
+						file: "en-us.json",
+					},
+					{
+						code: "es",
+						iso: "es-ES",
+						name: "Español",
+						file: "es-es.json",
+					},
+					{
+						code: "fr",
+						iso: "fr-FR",
+						name: "Français",
+						file: "fr-fr.json",
+					},
+					{
+						code: "de",
+						iso: "de-DE",
+						name: "Deutsch",
+						file: "de-de.json",
+					},
+				],
+				defaultLocale: "en",
+				strategy: "prefix_except_default",
+				lazy: true,
+				langDir: "locales",
+				compilation: {
+					strictMessage: false,
+				},
+				detectBrowserLanguage: {
+					useCookie: true,
+					cookieKey: "i18n_redirected",
+					redirectOn: "no prefix",
+					alwaysRedirect: false,
+					fallbackLocale: "en",
+				},
+				vueI18n: "./i18n.config.ts",
+				baseUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
+			},
+		],
 		Sonda({
 			server: true,
 		}),
+		"@nuxtjs/storybook",
 	],
 	site: {
 		url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
 		name: "ContentStack Integration",
 		description: "Modern Nuxt.js application integrated with ContentStack CMS",
-		defaultLocale: "en",
+		defaultLocale: "en-us",
 	},
 	app: {
 		head: {

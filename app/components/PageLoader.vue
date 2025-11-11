@@ -1,7 +1,17 @@
 <script lang="ts" setup>
-defineProps<{
+/**
+ * PageLoader Component
+ * 
+ * A loading spinner component that displays while content is being fetched.
+ * 
+ * @component
+ */
+interface Props {
+	/** Loading message to display below the spinner */
 	message?: string;
-}>();
+}
+
+defineProps<Props>();
 </script>
 
 <template>

@@ -8,8 +8,8 @@ const url =
 
 const { data: pageData, pending: pagePending } = await useContentStack({
 	content_type_uid: "page",
-	language: "en-us",
 	url: url,
+	trigger404: false,
 });
 
 const page = pageData;

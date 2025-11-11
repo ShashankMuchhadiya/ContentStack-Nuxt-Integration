@@ -1,8 +1,16 @@
 <script lang="ts" setup>
+/**
+ * Teaser Component
+ * 
+ * A teaser component that displays content with images or videos, supporting left/right alignment from ContentStack.
+ * 
+ * @component
+ */
 import type { Teaser as TeaserType } from "@/types/contentstack";
 import getLinkUrl from "@/utils/getLinkUrl";
 
 interface Props {
+	/** Teaser data from ContentStack */
 	teaser: TeaserType;
 }
 

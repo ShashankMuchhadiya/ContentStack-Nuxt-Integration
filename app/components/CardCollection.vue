@@ -1,10 +1,20 @@
 <script lang="ts" setup>
+/**
+ * CardCollection Component
+ * 
+ * A card collection component that displays a grid of cards with images, titles, and CTAs from ContentStack.
+ * 
+ * @component
+ */
 import type { CardCollection as CardCollectionType } from "@/types/contentstack";
 import getLinkUrl from "@/utils/getLinkUrl";
 
 interface Props {
+	/** Card collection data from ContentStack */
 	cardCollection: CardCollectionType;
+	/** Optional index for the collection */
 	index?: number;
+	/** Optional parent data for context */
 	parentData?: Record<string, unknown>;
 }
 

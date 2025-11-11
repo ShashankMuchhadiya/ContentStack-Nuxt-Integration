@@ -1,7 +1,15 @@
 <script lang="ts" setup>
+/**
+ * FeaturedArticles Component
+ * 
+ * A component that displays a grid of featured articles from ContentStack.
+ * 
+ * @component
+ */
 import type { FeaturedArticles as FeaturedArticlesType } from "@/types/contentstack";
 
 interface Props {
+	/** Featured articles data from ContentStack */
 	featuredArticles: FeaturedArticlesType;
 }
 

@@ -22,8 +22,11 @@ export default async ({ content_type_uid, language, options }: { content_type_ui
       }
     });
 
-    // Execute Query
-    const data = await query?.includeCount().find();
+    // Execute Query - only pass locale if language is provided and not default
+    // @ts-expect-error - find() might accept locale parameter
+    const data = language && language !== "en-us" && language !== "en"
+      ? await query?.includeCount().find({ locale: language })
+      : await query?.includeCount().find();
 
     // First page of entries
     const entries = data[0];
@@ -47,7 +50,11 @@ export default async ({ content_type_uid, language, options }: { content_type_ui
             skip: page * limit
           }
         });
-        const nextPageData = await nextPage?.includeCount().find();
+        // Execute query - only pass locale if language is provided and not default
+        // @ts-expect-error - find() might accept locale parameter
+        const nextPageData = language && language !== "en-us" && language !== "en"
+          ? await nextPage?.includeCount().find({ locale: language })
+          : await nextPage?.includeCount().find();
         // Merge next page of entries, with all previously fetched page of entries.
         data[0].push(...nextPageData[0]);
       }

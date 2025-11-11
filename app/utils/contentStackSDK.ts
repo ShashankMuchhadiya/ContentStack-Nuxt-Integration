@@ -3,7 +3,14 @@ import contentstack from "@contentstack/delivery-sdk";
 export default async () => {
 	try {
 		// Utilize Nuxt runtime config
-		const config = useRuntimeConfig();
+		let config;
+		try {
+			config = useRuntimeConfig();
+		} catch (error) {
+			// If we can't access runtime config, return null
+			console.warn("Cannot access runtime config, ContentStack SDK not initialized");
+			return null;
+		}
 
 		// Type-safe config access
 		const csConfig = config.public.contentstack as {
@@ -21,13 +28,12 @@ export default async () => {
 				environment: csConfig.ENVIRONMENT,
 			});
 		} else {
-			// If ContentStack configuration values are missing, throw an error.
-			contentStackError({
-				status: 500,
-				error_message: "ContentStack configuration values are invalid or missing.",
-			});
+			// If ContentStack configuration values are missing, return null instead of throwing
+			console.warn("ContentStack configuration values are invalid or missing.");
+			return null;
 		}
 	} catch (error: unknown) {
-		contentStackError(error as ContentStackError);
+		console.error("Error initializing ContentStack SDK:", error);
+		return null;
 	}
 };

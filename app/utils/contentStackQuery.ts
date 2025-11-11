@@ -1,4 +1,5 @@
 import { QueryOperation } from "@contentstack/delivery-sdk";
+import type { ContentStackQueryOptions } from "@/types/contentstack";
 
 export default async ({
 	content_type_uid,
@@ -25,8 +26,8 @@ export default async ({
 
 		/**
 		 * Build ContentStack query
-		 * Note: Language is typically set at the stack level or via query parameters
-		 * For ContentStack SDK v4, language handling may need to be done differently
+		 * Use locale as a query parameter instead of in the path
+		 * Format: /v3/content_types/{content_type_uid}/entries?locale={locale}
 		 */
 		let query = contentstack
 			// Return entries of the specific content type
@@ -35,6 +36,24 @@ export default async ({
 			.entry()
 			// Start defining a query for a single entry (this does not execute the query yet)
 			.query();
+
+		// Add locale to query if language is provided and not default (en or en-us)
+		// ContentStack SDK v4 uses addParams to add query parameters
+		// Only add locale if it's not the default language
+		if (language && language !== "en-us" && language !== "en") {
+			// Try to use addParams method to add locale as query parameter
+			if (typeof (query as any)?.addParams === "function") {
+				(query as any).addParams({ locale: language });
+			}
+			// Fallback: Try to use locale method if available
+			else if (typeof (query as any)?.locale === "function") {
+				query = (query as any).locale(language);
+			}
+			// Fallback: Try to use language method if available
+			else if (typeof (query as any)?.language === "function") {
+				query = (query as any).language(language);
+			}
+		}
 
 		/**
 		 * Return the entry of the provided URL
@@ -60,10 +79,19 @@ export default async ({
 		if (options) {
 			for (const option in options) {
 				const method = option;
-				const methodArguments = options[option as keyof ContentStackQueryOptions];
+				const methodArguments = options[option];
 
-				// Skip language as it's already handled above
-				if (method === "language") {
+				// Skip language and locale as they're handled separately
+				if (method === "language" || method === "locale") {
+					continue;
+				}
+
+				// Check if the method exists on the query object before calling it
+				// @ts-expect-error - We're dynamically calling methods on the query object
+				if (typeof query?.[method] !== "function") {
+					console.warn(
+						`Method ${method} is not available on the query object, skipping...`
+					);
 					continue;
 				}
 
@@ -71,16 +99,14 @@ export default async ({
 				if (
 					typeof methodArguments === "object" &&
 					!Array.isArray(methodArguments) &&
-					(methodArguments as ContentStackMethodArguments).key &&
-					(methodArguments as ContentStackMethodArguments).value
+					methodArguments !== null &&
+					"key" in methodArguments &&
+					"value" in methodArguments
 				) {
-					// @ts-ignore We're dynamically calling a method below, and dynamically called methods are difficult to type. [option] is a ContentStack SDK method.
-					query = query?.[method](
-						(methodArguments as ContentStackMethodArguments).key,
-						(methodArguments as ContentStackMethodArguments).value
-					);
+					// @ts-expect-error - We're dynamically calling methods on the query object
+					query = query?.[method](methodArguments.key, methodArguments.value);
 				} else {
-					// @ts-ignore We're dynamically calling a method below, and dynamically called methods are difficult to type. [option] is a ContentStack SDK method.
+					// @ts-expect-error - We're dynamically calling methods on the query object
 					query = query?.[method](methodArguments);
 				}
 			}
@@ -91,7 +117,7 @@ export default async ({
 		 * The query will be executed with find() or findOne() in the calling functions
 		 */
 		return query;
-	} catch (error) {
-		contentStackError(error as ContentStackError);
+	} catch (error: unknown) {
+		contentStackError(error);
 	}
 };

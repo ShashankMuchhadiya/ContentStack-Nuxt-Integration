@@ -1,8 +1,16 @@
 <script lang="ts" setup>
+/**
+ * TextImageCarousel Component
+ * 
+ * A carousel component that displays multiple items with text and images, supporting different image positions from ContentStack.
+ * 
+ * @component
+ */
 import type { TextImageCarousel as TextImageCarouselType } from "@/types/contentstack";
 import getLinkUrl from "@/utils/getLinkUrl";
 
 interface Props {
+	/** Carousel data from ContentStack */
 	carousel: TextImageCarouselType;
 }
 

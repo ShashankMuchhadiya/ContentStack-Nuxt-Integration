@@ -1,8 +1,19 @@
 <script lang="ts" setup>
-defineProps<{
+/**
+ * EmptyState Component
+ * 
+ * A component that displays an empty state message when no data is available.
+ * 
+ * @component
+ */
+interface Props {
+	/** Title text to display */
 	title?: string;
+	/** Message text to display */
 	message?: string;
-}>();
+}
+
+defineProps<Props>();
 </script>
 
 <template>

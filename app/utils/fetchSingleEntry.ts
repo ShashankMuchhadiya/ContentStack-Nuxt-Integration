@@ -36,7 +36,11 @@ export default async ({
 				language,
 				options,
 			});
-			const results = await query?.find();
+			// Execute query - only pass locale if language is provided and not default
+			// @ts-expect-error - find() might accept locale parameter
+			const results = language && language !== "en-us" && language !== "en"
+				? await query?.find({ locale: language })
+				: await query?.find();
 
 			// Handle different response structures
 			// Response can be: { entries: [...] } or directly an array
@@ -60,7 +64,11 @@ export default async ({
 			});
 
 			// Execute Query - find() returns array or object with entries
-			const results = await query?.find();
+			// Only pass locale if language is provided and not default
+			// @ts-expect-error - find() might accept locale parameter
+			const results = language && language !== "en-us" && language !== "en"
+				? await query?.find({ locale: language })
+				: await query?.find();
 
 			// Handle different response structures
 			if (results && typeof results === "object" && "entries" in results) {
