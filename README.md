@@ -14,6 +14,7 @@ A modern, dark-mode-first Nuxt.js application integrated with ContentStack CMS. 
 - **Live Preview Support**: ContentStack Live Preview integration
 - **State Management**: Pinia store for efficient data caching and state management
 - **Component Documentation**: Storybook integration for component development and documentation
+- **VitePress Documentation**: Comprehensive documentation site with guides and API reference
 - **Loading States**: Smooth loading indicators for better UX
 - **Dynamic Routing**: Support for dynamic page routing with catch-all routes
 - **SEO Optimization**: Built-in SEO support with meta tags and structured data
@@ -29,6 +30,7 @@ A modern, dark-mode-first Nuxt.js application integrated with ContentStack CMS. 
 - **Internationalization**: [@nuxtjs/i18n](https://i18n.nuxtjs.org/)
 - **Image Optimization**: [@nuxt/image](https://image.nuxtjs.org/)
 - **Component Documentation**: [Storybook](https://storybook.js.org/)
+- **Documentation**: [VitePress](https://vitepress.dev/)
 - **Package Manager**: npm
 
 ## 📋 Prerequisites
@@ -168,6 +170,15 @@ ContentStack-Integration/
 │   └── de-de.json                 # German translations
 ├── stories/                        # Storybook stories
 │   ├── *.stories.ts                # Component stories
+├── docs/                           # VitePress documentation
+│   ├── .vitepress/                 # VitePress configuration
+│   │   └── config.mjs              # VitePress config file
+│   ├── components/                 # Component documentation
+│   ├── composables/                 # Composable documentation
+│   ├── api/                        # API reference
+│   ├── guides/                     # Step-by-step guides
+│   ├── index.md                    # Documentation home page
+│   └── getting-started.md          # Getting started guide
 ├── public/                         # Static assets
 ├── nuxt.config.ts                  # Nuxt configuration
 ├── package.json                    # Dependencies
@@ -289,6 +300,9 @@ The language switcher is automatically available in the header. Users can switch
 - `npm run preview` - Preview production build
 - `npm run storybook` - Start Storybook development server
 - `npm run build-storybook` - Build Storybook for production
+- `npm run docs:dev` - Start VitePress documentation server
+- `npm run docs:build` - Build VitePress documentation
+- `npm run docs:preview` - Preview built documentation
 - `npm run postinstall` - Prepare Nuxt (runs automatically)
 
 ## 📚 Storybook
@@ -312,6 +326,46 @@ npm run build-storybook
 ### Story Files
 
 All story files are located in the `stories/` directory. Each component has its own story file with multiple variants and documentation.
+
+## 📖 VitePress Documentation
+
+This project includes comprehensive documentation built with VitePress.
+
+### Running Documentation
+
+```bash
+npm run docs:dev
+```
+
+The documentation will be available at `http://localhost:5173`
+
+### Building Documentation
+
+```bash
+npm run docs:build
+```
+
+### Previewing Built Documentation
+
+```bash
+npm run docs:preview
+```
+
+### Documentation Structure
+
+The documentation includes:
+
+- **Getting Started** - Setup and installation guide
+- **Components** - Complete component documentation
+- **Composables** - Composable functions reference
+- **API Reference** - SDK and utilities documentation
+- **Guides** - Step-by-step guides for:
+    - Configuration
+    - ContentStack Setup
+    - Internationalization
+    - SEO
+
+All documentation files are located in the `docs/` directory.
 
 ## 🏗️ Building for Production
 
