@@ -5,6 +5,11 @@ import { showError } from 'nuxt/app';
  * @param {ContentStackError | string} error An error object caught in a try/catch, or manually passed to this composable.
  */
 export default async (error?: ContentStackError | string) => {
+  // Don't show errors if SDK is not initialized (likely missing env vars)
+  if (typeof error === 'string' && error.includes('ContentStack SDK not initialized')) {
+    return;
+  }
+
   // Always log the error to the console
   if (error !== undefined) {
     console.error(error);

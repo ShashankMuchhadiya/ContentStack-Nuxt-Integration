@@ -24,7 +24,15 @@ export default defineNuxtConfig({
 		],
 		"@nuxt/image",
 		"@nuxtjs/sitemap",
-		"@nuxtjs/robots",
+		[
+			"@nuxtjs/robots",
+			{
+				// Only disallow admin routes, not /api/ to avoid warning
+				// API routes are typically not exposed as public routes in Nuxt
+				disallow: ["/admin/"],
+				allow: ["/"],
+			},
+		],
 		[
 			"@nuxtjs/i18n",
 			{
@@ -79,6 +87,8 @@ export default defineNuxtConfig({
 			"@nuxtjs/storybook",
 			{
 				proxy: false,
+				// Disable auto-start to prevent conflicts with dev server
+				enabled: false,
 			},
 		],
 	],

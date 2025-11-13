@@ -21,7 +21,8 @@ export default async ({
 		 * @see https://www.contentstack.com/docs/developers/sdks/content-delivery-sdk/javascript-browser/reference#query
 		 */
 		if (!contentstack) {
-			throw new Error("ContentStack SDK not initialized");
+			// Return null instead of throwing to allow graceful handling
+			return null;
 		}
 
 		/**
@@ -118,6 +119,10 @@ export default async ({
 		 */
 		return query;
 	} catch (error: unknown) {
-		contentStackError(error);
+		// Only call error handler if it's not an SDK initialization error
+		if (error instanceof Error && !error.message.includes('ContentStack SDK not initialized')) {
+			contentStackError(error);
+		}
+		return null;
 	}
 };

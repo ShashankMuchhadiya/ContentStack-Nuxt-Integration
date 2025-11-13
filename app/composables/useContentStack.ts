@@ -143,6 +143,11 @@ export default async ({
 					/**
 					 * Validate Response
 					 */
+					// If result is false or null, return null to indicate no data
+					if (asyncDataResult === false || asyncDataResult === null) {
+						return null;
+					}
+
 					if (
 						asyncDataResult?._content_type_uid === undefined &&
 						asyncDataResult?.entries === undefined

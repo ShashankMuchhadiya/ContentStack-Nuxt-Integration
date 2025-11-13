@@ -16,6 +16,11 @@ export default async ({ content_type_uid, language, options }: { content_type_ui
       options
     });
 
+    // If query is null, return false to indicate no data
+    if (!query) {
+      return false;
+    }
+
     // Execute Query - only pass locale if language is provided and not default
     // @ts-expect-error - find() might accept locale parameter
     const data = language && language !== "en-us" && language !== "en"

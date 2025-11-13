@@ -17,6 +17,20 @@ const config: StorybookConfig = {
 			config.server.proxy = undefined;
 		}
 		
+		// Fix Storybook file resolution to prevent /_nuxt/app.vue errors
+		if (config.resolve) {
+			config.resolve.alias = {
+				...config.resolve.alias,
+			};
+		}
+		
+		// Suppress Storybook file path errors
+		if (config.plugins) {
+			config.plugins = config.plugins.filter(
+				(plugin: any) => !(plugin && plugin.name && plugin.name.includes("vite-plugin-inspect"))
+			);
+		}
+		
 		return config;
 	},
 

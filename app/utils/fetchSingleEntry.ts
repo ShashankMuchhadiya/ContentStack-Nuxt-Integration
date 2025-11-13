@@ -24,7 +24,8 @@ export default async ({
 		const contentstack = await contentStackSDK();
 
 		if (!contentstack) {
-			throw new Error("ContentStack SDK not initialized");
+			// Return false instead of throwing to allow graceful handling
+			return false;
 		}
 
 		let entry;
@@ -36,6 +37,12 @@ export default async ({
 				language,
 				options,
 			});
+
+			// If query is null, return false to indicate no data
+			if (!query) {
+				return false;
+			}
+
 			// Execute query - only pass locale if language is provided and not default
 			// @ts-expect-error - find() might accept locale parameter
 			const results = language && language !== "en-us" && language !== "en"
